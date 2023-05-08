@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { limpiar, predecir } from "../functions/recognizeNumber"
 
 export const RecognizeNumber = () => {
@@ -34,6 +35,9 @@ export const RecognizeNumber = () => {
         <div className="b-example-divider"></div>
   
         <div className="b-example-divider mb-0"></div>
+        <Link to="/">
+                <button>Volver</button>
+        </Link>
       </main>
     )
 }
