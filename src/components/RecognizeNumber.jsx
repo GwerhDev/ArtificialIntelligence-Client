@@ -22,9 +22,12 @@ export const RecognizeNumber = () => {
                 <canvas id="bigcanvas" width="200" height="200"></canvas>
                 <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
               </div>
-              <div class="text-center mt-3">
-                <button className="btn btn-primary" id="limpiar" onClick={limpiar()}>Limpiar</button>
-                <button className="btn btn-success" id="predecir" onClick={predecir()}>Predecir</button>
+              <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
+                <button className="btn btn-primary" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="limpiar" onClick={limpiar()}>Limpiar</button>
+                <button className="btn btn-success" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="predecir" onClick={predecir()}>Predecir</button>
+                <Link to="/">
+                        <button className="btn-back"style={{height:"38px", marginLeft:"5px", marginRight:"5px"}}>Volver</button>
+                </Link>
                 <div id="resultado"></div>
               </div>
               
@@ -35,9 +38,6 @@ export const RecognizeNumber = () => {
         <div className="b-example-divider"></div>
   
         <div className="b-example-divider mb-0"></div>
-        <Link to="/">
-                <button>Volver</button>
-        </Link>
       </main>
     )
 }

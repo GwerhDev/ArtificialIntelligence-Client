@@ -3,18 +3,18 @@ import { Link } from "react-router-dom"
 export const Home = () => {
     return (
         <div>
-            <h1 className="display-5 fw-bold">Test de app</h1>
+            <h1 className="display-5 fw-bold">Testing AI y Componentes</h1>
             <ul style={{listStyle:"none", padding:"100px"}}>
                 <li>
                     <Link to="/celsiustofahrenheit">
-                        <button style={{color: "black"}}>
+                        <button className="btn btn-primary" style={{color: "white", marginBottom: "10px"}}>
                             Convertidor de Celsius a Fahrenheit
                         </button>
                     </Link>
                 </li>
                 <li>
                     <Link to="/recognizenumber">
-                        <button style={{color: "black"}}>
+                        <button className="btn btn-primary" style={{color: "white", marginBottom: "10px"}}>
                             Reconocedor de números
                         </button>
                     </Link>
