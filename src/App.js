@@ -2,10 +2,13 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import { CelciusToFahrenheit } from './components/CelciusToFahrenheit';
 import { Home } from './pages/Home';
+import { Head } from './components/Head';
+import { RecognizeNumber } from './components/RecognizeNumber';
 
 function App() {
   return (
     <div className="App">
+      <Head/>
       <Switch>
         <Route exact path='/'>
           <Home/>
@@ -14,7 +17,7 @@ function App() {
           <CelciusToFahrenheit/>
         </Route>
         <Route exact path='/recognizenumber'>
-          <CelciusToFahrenheit/>
+          <RecognizeNumber/>
         </Route>
       </Switch>
     </div>

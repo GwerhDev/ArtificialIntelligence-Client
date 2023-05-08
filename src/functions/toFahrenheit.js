@@ -1,10 +1,10 @@
 import * as tf from '@tensorflow/tfjs';
+import { URL_API } from '../middlewares/misc/config';
 
-export async function toFahrenheit(model) {
+export async function toFahrenheit() {
   try {
     console.log("Cargando modelo...");
-    const modelJson = JSON.stringify(model);
-    const modelo = await tf.loadLayersModel(tf.io.fromMemory(JSON.parse(modelJson)));
+    const modelo = await tf.loadLayersModel(`${URL_API}/celsiustofahrenheit/model`);
     console.log("Modelo cargado...");
   
     const celsius = document.getElementById("celsius").value;

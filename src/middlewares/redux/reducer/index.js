@@ -1,4 +1,4 @@
-import { GET_MODEL_CELCIUSTOFAHRENHEIT } from "../../misc/consts"
+import { GET_MODEL_CELSIUSTOFAHRENHEIT } from "../../misc/consts"
 
 const initialState = {
     celciusToFahrenheitModel: []
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action){
     switch(action.type){
-        case GET_MODEL_CELCIUSTOFAHRENHEIT:
+        case GET_MODEL_CELSIUSTOFAHRENHEIT:
             return{
                 ...state,
                 celciusToFahrenheitModel: action.payload

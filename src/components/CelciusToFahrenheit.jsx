@@ -14,7 +14,6 @@ export const CelciusToFahrenheit = () => {
     return(
         <main>
             <div className="px-4 py-2 my-2 text-center border-bottom">
-            <img className="d-block mx-auto mb-2" src="favicon.ico" alt="" width="80" height="80" />
             <h1 className="display-5 fw-bold">Celsius a Fahrenheit</h1>
             <div className="col-lg-6 mx-auto">
                 <p className="lead mb-0">Conversi&oacute;n de grados celsius a fahrenheit utilizando Tensorflow.js</p>
