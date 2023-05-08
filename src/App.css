@@ -27,10 +27,11 @@
 body{
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(168deg, rgb(89, 138, 146) 10% , #5e445b 80%);
-  color: white
-
+  background-repeat: no-repeat;
+  color: white;
+  overflow: auto;
 }
 
 #resultado {

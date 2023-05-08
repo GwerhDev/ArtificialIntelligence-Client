@@ -7,6 +7,7 @@ export const RecognizeNumber = () => {
         <div className="px-4 py-2 my-2 text-center border-bottom">
           <img className="d-block mx-auto mb-2" src="LogotipoV2-Simple.png" alt="" width="80" height="80" />
           <h1 className="display-5 fw-bold">N&uacute;meros escritos a mano</h1>
+          <h1>UNDER CONSTRUCTION</h1>
           <div className="col-lg-6 mx-auto">
             <p className="lead mb-0">Predicci&oacute;n de n&uacute;meros escritos a mano utilizando Tensorflow.js</p>
           </div>
@@ -23,8 +24,8 @@ export const RecognizeNumber = () => {
                 <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
               </div>
               <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
-                <button className="btn btn-primary" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="limpiar" onClick={limpiar()}>Limpiar</button>
-                <button className="btn btn-success" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="predecir" onClick={predecir()}>Predecir</button>
+                <button disabled className="btn btn-primary" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="limpiar" onClick={limpiar()}>Limpiar</button>
+                <button disabled className="btn btn-success" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="predecir" onClick={predecir()}>Predecir</button>
                 <Link to="/">
                         <button className="btn-back"style={{height:"38px", marginLeft:"5px", marginRight:"5px"}}>Volver</button>
                 </Link>
