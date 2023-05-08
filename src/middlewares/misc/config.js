@@ -1,0 +1,1 @@
+export const URL_API = "https://artificialintelligence-api.fly.dev"
