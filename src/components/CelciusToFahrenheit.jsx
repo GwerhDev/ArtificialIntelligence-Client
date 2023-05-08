@@ -3,6 +3,7 @@ import { toFahrenheit } from "../functions/toFahrenheit"
 import { useDispatch, useSelector } from 'react-redux';
 import { getModelCelciusToFahrenheit } from "../middlewares/redux/actions";
 import { Link } from "react-router-dom";
+import s from "../pages/css/Home.module.css"
 
 export const CelciusToFahrenheit = () => {
     const dispatch = useDispatch()
@@ -44,7 +45,7 @@ export const CelciusToFahrenheit = () => {
             <div className="b-example-divider" />
             <div className="b-example-divider mb-0"/>
             <Link to="/">
-                <button className="btn-back"style={{height:"38px", marginTop:"20px", marginLeft:"5px", marginRight:"5px"}}>Volver</button>
+                <button className={s.buttonBack}>Volver</button>
             </Link>
         </main>
     )

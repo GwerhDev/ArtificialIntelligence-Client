@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { limpiar, predecir } from "../functions/recognizeNumber"
+import s from "../pages/css/Home.module.css"
 
 export const RecognizeNumber = () => {
     return (
@@ -24,10 +25,10 @@ export const RecognizeNumber = () => {
                 <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
               </div>
               <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
-                <button disabled className="btn btn-primary" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="limpiar" onClick={limpiar()}>Limpiar</button>
-                <button disabled className="btn btn-success" style={{height:"38px", marginLeft:"5px", marginRight:"5px"}} id="predecir" onClick={predecir()}>Predecir</button>
+                <button disabled className={s.buttonOptional} id="limpiar" onClick={limpiar()}>Limpiar</button>
+                <button disabled className={s.buttonSecundary} id="predecir" onClick={predecir()}>Predecir</button>
                 <Link to="/">
-                        <button className="btn-back"style={{height:"38px", marginLeft:"5px", marginRight:"5px"}}>Volver</button>
+                        <button className={s.buttonBack}>Volver</button>
                 </Link>
                 <div id="resultado"></div>
               </div>

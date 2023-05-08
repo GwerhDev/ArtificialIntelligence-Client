@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import s from "./css/Home.module.css"
 
 export const Home = () => {
     return (
@@ -7,14 +8,14 @@ export const Home = () => {
             <ul style={{listStyle:"none", padding:"100px"}}>
                 <li>
                     <Link to="/celsiustofahrenheit">
-                        <button className="btn btn-primary" style={{color: "white", marginBottom: "10px"}}>
+                       <button className={s.buttonPrimary}>
                             Convertidor de Celsius a Fahrenheit
                         </button>
                     </Link>
                 </li>
                 <li>
                     <Link to="/recognizenumber">
-                        <button className="btn btn-primary" style={{color: "white", marginBottom: "10px"}}>
+                        <button className={s.buttonPrimary}>
                             Reconocedor de números
                         </button>
                     </Link>
