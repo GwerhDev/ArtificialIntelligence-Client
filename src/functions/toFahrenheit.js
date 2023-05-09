@@ -3,9 +3,7 @@ import { URL_API } from '../middlewares/misc/config';
 
 export async function toFahrenheit() {
   try {
-    console.log("Cargando modelo...");
     const modelo = await tf.loadLayersModel(`${URL_API}/celsiustofahrenheit/model`);
-    console.log("Modelo cargado...");
   
     const celsius = document.getElementById("celsius").value;
     document.getElementById("lbl-celsius").innerHTML = celsius;
