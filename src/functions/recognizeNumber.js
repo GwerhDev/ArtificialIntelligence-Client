@@ -12,12 +12,9 @@ export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
       newCanvas.isDrawingMode = true;
       newCanvas.freeDrawingBrush.width = brushWidth;
       setCanvas(newCanvas);
-      document.getElementById("resultado").innerHTML = "";
+      document.getElementById("resultado").style.opacity = "0"
     }
 }
-
-
-
 
 function resample_single(canvas, width, height, resize_canvas) {
     var width_source = canvas.width;
@@ -134,8 +131,10 @@ export async function handleDrawing() {
     
   } catch (error) {
     console.error(error);
+    document.getElementById("resultado").style.opacity = "1"
     document.getElementById("resultado").innerHTML = "Error, vuelve a intentarlo...";
   }
+    document.getElementById("resultado").style.opacity = "1"
     document.getElementById("resultado").innerHTML = `Es un ${mayorIndice}`;
     
   }

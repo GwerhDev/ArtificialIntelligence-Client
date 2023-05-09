@@ -116,3 +116,8 @@ body{
   cursor: pointer;
   background-color: rgb(27, 30, 34);
 }
+
+#resultado{
+  transition-duration: .5s;
+  opacity: 0;
+}
