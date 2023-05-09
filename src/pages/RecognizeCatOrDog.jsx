@@ -10,7 +10,7 @@ export const RecognizeCatOrDog = () => {
     var size = 400;
 
     var currentStream = null;
-    var facingMode = "user"; //Para que funcione con el celular (user/environment)
+    var facingMode = "user/environment"; //Para que funcione con el celular (user/environment)
 
     window.onload = function() {
         mostrarCamara();
@@ -73,29 +73,27 @@ export const RecognizeCatOrDog = () => {
     async function predecir() {
         try {
             const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
+            console.log(modelo)
         if (modelo != null) {
-            //Pasar canvas a version 150x150
-
             resample_single(canvas, 150, 150, othercanvas);
             
             var ctx2 = othercanvas.getContext("2d");
 
             var imgData = ctx2.getImageData(0,0,150,150);
-            var arr = []; //El arreglo completo
-            var arr150 = []; //Al llegar a arr150 posiciones se pone en 'arr' como un nuevo indice
+            var arr = [];
+            var arr150 = [];
             for (var p=0; p < imgData.data.length; p+=4) {
                 var red = imgData.data[p]/255;
                 var green = imgData.data[p+1]/255;
                 var blue = imgData.data[p+2]/255;
-                arr150.push([red, green, blue]); //Agregar al arr150 y normalizar a 0-1. Aparte queda dentro de un arreglo en el indice 0... again
+                arr150.push([red, green, blue]);
                 if (arr150.length === 150) {
                     arr.push(arr150);
                     arr150 = [];
                 }
             }
 
-            arr = [arr]; //Meter el arreglo en otro arreglo por que si no tio tensorflow se enoja >:(
-            //Nah basicamente Debe estar en un arreglo nuevo en el indice 0, por ser un tensor4d en forma 1, 150, 150, 1
+            arr = [arr]; 
             var tensor4 = tf.tensor4d(arr);
             var resultados = modelo.predict(tensor4).dataSync();
             var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
@@ -213,7 +211,7 @@ export const RecognizeCatOrDog = () => {
 
             <div className="container mt-5">
                 <div className="row">
-                <div className="col-12 col-md-4 offset-md-4 text-center">
+                <div className="col-12 col-md-4 offset-md-4 text-center videoCont">
                     <video id="video" playsInline autoPlay style={{width: "1px"}}></video>
                     <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
                     <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>

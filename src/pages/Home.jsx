@@ -35,7 +35,7 @@ export const Home = () => {
                 <li>
                     <Link to="/recognizecatordog">
                         <button className="buttonPrimary pageList">
-                            Reconocedor de Gato 😽 o Perro 🐶
+                            Reconocedor de Gato o Perro 😽🐶
                         </button>
                     </Link>
                 </li>
