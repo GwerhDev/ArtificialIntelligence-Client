@@ -2,6 +2,7 @@ import { fabric } from "fabric";
 import { useEffect, useRef, useState } from "react";
 import s from "./css/Board.module.css"
 import { handleClear, handleDrawing } from "../functions/recognizeNumber";
+import { BackButton } from "./BackButton";
 
 export function Board() {
   const [canvas, setCanvas] = useState(null);
@@ -39,9 +40,7 @@ export function Board() {
       <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultado"></div>
       <div className={s.buttonCont}>
         <button className={"buttonSecundary"} id="predecir" onClick={()=>handleDrawing()}>Predecir</button>
-        <a href="/">
-          <button className={"buttonBack"}>Volver</button>
-        </a>
+        <BackButton/>
       </div>
     </div>
   );

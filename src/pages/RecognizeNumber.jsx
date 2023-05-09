@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { Board } from "./Board";
+import { Board } from "../components/Board";
 
 export const RecognizeNumber = () => {
 
