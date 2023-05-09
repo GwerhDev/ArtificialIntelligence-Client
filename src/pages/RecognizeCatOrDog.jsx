@@ -100,7 +100,7 @@ export const RecognizeCatOrDog = () => {
 
             var clases = ['Gato', 'Perro'];
             console.log("Prediccion", clases[mayorIndice]);
-            document.getElementById("resultado").innerHTML = clases[mayorIndice];
+            document.getElementById("resultadoRCOD").innerHTML = clases[mayorIndice];
         }
 
         setTimeout(predecir, 150);
@@ -216,7 +216,7 @@ export const RecognizeCatOrDog = () => {
                     <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
                     <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>
                     <canvas id="othercanvas" width="150" height="150" style={{display: "none"}}></canvas>
-                    <div id="resultado"></div>            
+                    <div id="resultadoRCOD"></div>            
                 </div>
                 </div>
             </div>

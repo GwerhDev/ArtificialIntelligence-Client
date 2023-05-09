@@ -12,9 +12,9 @@ export async function toFahrenheit() {
     const prediccion = modelo.predict(tensor).dataSync();
     const resultado = Math.round(prediccion[0], 1);
   
-    document.getElementById("resultado").innerHTML = `${celsius} grados celsius son ${resultado} grados fahrenheit!`;
+    document.getElementById("resultadoCTF").innerHTML = `${celsius} grados celsius son ${resultado} grados fahrenheit!`;
   } catch (error) {
     console.error(error);
-    document.getElementById("resultado").innerHTML = "Intenta de nuevo en un momento...";
+    document.getElementById("resultadoCTF").innerHTML = "Intenta de nuevo en un momento...";
   }
 }

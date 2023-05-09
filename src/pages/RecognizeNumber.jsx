@@ -27,7 +27,7 @@ export const RecognizeNumber = () => {
                 <Board/>
             </div>
             <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
-              <div id="resultado"></div>
+              <div id="resultadoRN"></div>
             </div>
           </div>
         </div>
