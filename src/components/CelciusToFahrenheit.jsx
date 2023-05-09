@@ -3,6 +3,8 @@ import { toFahrenheit } from "../functions/toFahrenheit"
 import { useDispatch, useSelector } from 'react-redux';
 import { getModelCelciusToFahrenheit } from "../middlewares/redux/actions";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"
+
 
 export const CelciusToFahrenheit = () => {
     const dispatch = useDispatch()
@@ -13,6 +15,11 @@ export const CelciusToFahrenheit = () => {
 
     return(
         <main>
+            <motion.div
+            initial={{opacity:0}}
+            transition={{duration: 1.5}}
+            animate={{opacity:1}}
+            >
             <div className="px-4 py-2 my-2 text-center border-bottom">
             <h1 className="display-5 fw-bold">Celsius a Fahrenheit</h1>
             <div className="col-lg-6 mx-auto">
@@ -46,6 +53,8 @@ export const CelciusToFahrenheit = () => {
             <Link to="/">
                 <button className={"buttonBack"}>Volver</button>
             </Link>
+        </motion.div>
         </main>
+
     )
 }

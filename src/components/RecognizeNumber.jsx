@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom"
 import { limpiar, predecir } from "../functions/recognizeNumber"
+import { motion } from "framer-motion"
 
 export const RecognizeNumber = () => {
     return (
       <main>
+        <motion.div
+        initial={{opacity:0}}
+        transition={{duration: 1.5}}
+        animate={{opacity:1}}
+        >
         <div className="px-4 py-2 my-2 text-center border-bottom">
           <h1 className="display-5 fw-bold">N&uacute;meros escritos a mano</h1>
           <h1>UNDER CONSTRUCTION</h1>
@@ -38,6 +44,7 @@ export const RecognizeNumber = () => {
         <div className="b-example-divider"></div>
   
         <div className="b-example-divider mb-0"></div>
+      </motion.div>
       </main>
     )
 }
