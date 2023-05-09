@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-import { predecir } from "../functions/recognizeNumber"
 import { motion } from "framer-motion"
 import { Board } from "./Board";
 
@@ -29,10 +27,6 @@ export const RecognizeNumber = () => {
                 <Board/>
             </div>
             <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
-              <button disabled className={"buttonSecundary"} id="predecir" onClick={predecir()}>Predecir</button>
-              <Link to="/">
-                <button className={"buttonBack"}>Volver</button>
-              </Link>
               <div id="resultado"></div>
             </div>
           </div>

@@ -1,7 +1,9 @@
 .boardCont{
-    padding: 20px;
+    padding-top: 20px;
     position: relative;
-    width: 100%;
+    width: 150%;
+    margin-left: -25%;
     display: flex;
     justify-content: center;
 }
+
