@@ -166,7 +166,7 @@ export function Board() {
           height={200}
           id="bigcanvas"
         />
-        <button className={"buttonOptional"} onClick={handleClear}>Clear</button>
+        <button className={"buttonOptional"} onClick={handleClear}>Borrar</button>
       </ul>
         <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
       <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultado"></div>
