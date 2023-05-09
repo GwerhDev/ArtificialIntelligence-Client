@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const Home = () => {
     return (
         <div>
-            <h1 className="display-5 fw-bold">Testing AI y Componentes</h1>
+            <h1 className="display-5 fw-bold">Testing AI & Components</h1>
             <ul style={{listStyle:"none", padding:"100px"}}>
                 <li>
                     <Link to="/celsiustofahrenheit">
