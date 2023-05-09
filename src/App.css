@@ -119,7 +119,7 @@ body{
   background-color: rgb(27, 30, 34);
 }
 
-#resultado{
+#resultadoRN{
   transition-duration: .5s;
   opacity: 0;
 }

@@ -37,7 +37,7 @@ export function Board() {
         <button className={"buttonOptional"} onClick={()=>handleClear(canvas, setCanvas, canvasRef, brushWidth)}>Borrar</button>
       </ul>
         <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
-      <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultado"></div>
+      <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultadoRN"></div>
       <div className={s.buttonCont}>
         <button className={"buttonSecundary"} id="predecir" onClick={()=>handleDrawing()}>Predecir</button>
         <BackButton/>
