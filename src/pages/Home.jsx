@@ -19,21 +19,21 @@ export const Home = () => {
         >
             <ul style={{listStyle:"none", padding:"100px"}}>
                 <li>
-                    <Link to="/celsiustofahrenheit">
+                    <Link to="/ai-testing/celsiustofahrenheit">
                     <button className={"buttonPrimary pageList"}>
                             Convertidor de Celsius a Fahrenheit 🌡️
                         </button>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/recognizenumber">
+                    <Link to="/ai-testing/recognizenumber">
                         <button className="buttonPrimary pageList">
                             Reconocedor de números 🔢
                         </button>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/recognizecatordog">
+                    <Link to="/ai-testing/recognizecatordog">
                         <button className="buttonPrimary pageList">
                             Reconocedor de Gato o Perro 😽🐶
                         </button>

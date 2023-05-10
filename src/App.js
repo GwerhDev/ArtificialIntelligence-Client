@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { Home } from './pages/Home';
 import { Head } from './components/Head';
@@ -14,15 +14,18 @@ function App() {
       <VisitProjects/>
       <Switch>
         <Route exact path='/'>
+          <Redirect to='/ai-testing' />
+        </Route>
+        <Route exact path='/ai-testing'>
           <Home/>
         </Route>
-        <Route exact path='/celsiustofahrenheit'>
+        <Route exact path='/ai-testing/celsiustofahrenheit'>
           <CelciusToFahrenheit/>
         </Route>
-        <Route exact path='/recognizenumber'>
+        <Route exact path='/ai-testing/recognizenumber'>
           <RecognizeNumber/>
         </Route>
-        <Route exact path='/recognizecatordog'>
+        <Route exact path='/ai-testing/recognizecatordog'>
           <RecognizeCatOrDog/>
         </Route>
       </Switch>

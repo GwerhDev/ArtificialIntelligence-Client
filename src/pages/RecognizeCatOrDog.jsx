@@ -10,8 +10,8 @@ export const RecognizeCatOrDog = () => {
     var size = 400;
 
     var currentStream = null;
-    var facingMode = "user/environment"; //Para que funcione con el celular (user/environment)
-
+    var facingMode = "user"; //Para que funcione con el celular (user/environment)
+    
     window.onload = function() {
         mostrarCamara();
     }
@@ -216,7 +216,7 @@ export const RecognizeCatOrDog = () => {
                     <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
                     <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>
                     <canvas id="othercanvas" width="150" height="150" style={{display: "none"}}></canvas>
-                    <div id="resultadoRCOD"></div>            
+                    <div id="resultadoRCOD"></div>
                 </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 export const BackButton = () => {
     return(
-        <a href="/">
+        <a href="/#/ai-testing/">
             <button className={"buttonBack"}>Volver</button>
         </a>
     )

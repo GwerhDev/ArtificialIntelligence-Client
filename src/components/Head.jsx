@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 export const Head = () => {
     return (
@@ -8,9 +9,9 @@ export const Head = () => {
             animate={{opacity:1}}
         >
             <div>
-                <a href="http://projects.terminalkiller.site">
+                <Link to="/">
                     <img style={{marginTop:'5rem'}} className="d-block mx-auto mb-2" src="terminalkiller-logo.png" alt="" height="130" />
-                </a>
+                </Link>
             </div>
         </motion.div>
 

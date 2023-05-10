@@ -1,6 +1,5 @@
 {
   "name": "terminalkiller-developers",
-  "homepage": "https://developers.terminalkiller.site",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
