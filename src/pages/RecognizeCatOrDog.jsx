@@ -10,7 +10,7 @@ export const RecognizeCatOrDog = () => {
     var size = 400;
 
     var currentStream = null;
-    var facingMode = "user"; //Para que funcione con el celular (user/environment)
+    var facingMode = "user";
     
     useEffect(()=>{
         mostrarCamara();
@@ -211,13 +211,13 @@ export const RecognizeCatOrDog = () => {
 
             <div className="container mt-5">
                 <div className="row">
-                <div className="col-12 col-md-4 offset-md-4 text-center videoCont">
-                    <video id="video" playsInline autoPlay style={{width: "1px"}}></video>
-                    <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
-                    <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>
-                    <canvas id="othercanvas" width="150" height="150" style={{display: "none"}}></canvas>
-                    <div id="resultadoRCOD"></div>
-                </div>
+                    <div className="col-12 col-md-4 offset-md-4 text-center">
+                        <video id="video" playsInline autoPlay style={{width: "1px"}}/>
+                        <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
+                        <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>
+                        <canvas id="othercanvas" width="150" height="150" style={{display: "none"}}></canvas>
+                        <div id="resultadoRCOD"></div>
+                    </div>
                 </div>
             </div>
 
