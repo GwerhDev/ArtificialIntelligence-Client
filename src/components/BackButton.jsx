@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom"
+
 export const BackButton = () => {
     return(
-        <a href="/#/ai-testing/">
+        <Link to="/ai-testing/">
             <button className={"buttonBack"}>Volver</button>
-        </a>
+        </Link>
     )
 }

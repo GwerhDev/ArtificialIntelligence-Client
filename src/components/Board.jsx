@@ -13,15 +13,12 @@ export function Board() {
     const newCanvas = new fabric.Canvas(canvasRef.current, {
       backgroundColor: "transparent",
     });
-
+    
     newCanvas.isDrawingMode = true;
     newCanvas.freeDrawingBrush.width = brushWidth;
 
     setCanvas(newCanvas);
 
-    return () => {
-      newCanvas.dispose();
-    };
   }, []);
 
   return (
@@ -34,7 +31,7 @@ export function Board() {
           height={200}
           id="bigcanvas"
         />
-        <button className={"buttonOptional"} onClick={()=>handleClear(canvas, setCanvas, canvasRef, brushWidth)}>Borrar</button>
+        <button className={"buttonOptional"} onClick={()=> handleClear(canvas, setCanvas, canvasRef, brushWidth)}>Borrar</button>
       </ul>
         <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
       <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultadoRN"></div>

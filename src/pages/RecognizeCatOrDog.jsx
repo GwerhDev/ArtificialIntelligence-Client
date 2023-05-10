@@ -1,7 +1,7 @@
 import { BackButton } from "../components/BackButton"
 import * as tf from '@tensorflow/tfjs';
 import { URL_API } from "../middlewares/misc/config";
-
+import { useEffect } from "react";
 
 export const RecognizeCatOrDog = () => {
     var canvas = document.getElementById("canvas");
@@ -12,9 +12,9 @@ export const RecognizeCatOrDog = () => {
     var currentStream = null;
     var facingMode = "user"; //Para que funcione con el celular (user/environment)
     
-    window.onload = function() {
+    useEffect(()=>{
         mostrarCamara();
-    }
+    })
 
     function mostrarCamara() {
 

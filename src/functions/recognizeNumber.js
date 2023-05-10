@@ -4,16 +4,14 @@ import { URL_API } from "../middlewares/misc/config";
 
 
 export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
-    if (canvas) {
-      canvas.dispose();
-      const newCanvas = new fabric.Canvas(canvasRef.current, {
+    canvas.dispose();
+    const newCanvas = new fabric.Canvas(canvasRef.current, {
         backgroundColor: "transparent",
-      });
-      newCanvas.isDrawingMode = true;
-      newCanvas.freeDrawingBrush.width = brushWidth;
-      setCanvas(newCanvas);
-      document.getElementById("resultadoRN").style.opacity = "0"
-    }
+    });
+    newCanvas.isDrawingMode = true;
+    newCanvas.freeDrawingBrush.width = brushWidth;
+    setCanvas(newCanvas);
+    document.getElementById("resultadoRN").style.opacity = "0"
 }
 
 function resample_single(canvas, width, height, resize_canvas) {
