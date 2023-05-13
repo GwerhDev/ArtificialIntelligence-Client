@@ -1,37 +1,51 @@
 import { BackButton } from "../components/BackButton"
 import * as tf from '@tensorflow/tfjs';
 import { URL_API } from "../middlewares/misc/config";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const RecognizeCatOrDog = () => {
-    var canvas = document.getElementById("canvas");
-    var othercanvas = document.getElementById("othercanvas");
-    var video = document.getElementById("video");
+    var canvas = useRef(null);
+    var othercanvas = useRef(null);
     var size = 400;
 
-    var currentStream = null;
+    var currentStream = useRef(null);
     var facingMode = "user";
     
+    var resultadoRCOD = useRef(null)
+
+
     useEffect(()=>{
-        mostrarCamara();
+        mostrarCamara()
     })
 
     function mostrarCamara() {
-
         var opciones = {
             audio: false,
             video: {
                 facingMode: "user", width: size, height: size
             }
         };
-
-        if(navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia(opciones)
-                .then(function(stream) {
-                    currentStream = stream;
-                    video.srcObject = currentStream;
-                    procesarCamara();
-                    predecir();
+    
+        const successCallback = (stream) => {
+            currentStream.current.srcObject = stream;
+            currentStream.current.play();
+            procesarCamara();
+            predecir();
+          };
+          const errorCallback = (error) => {
+            console.error('Error accessing media devices.', error);
+          };
+    
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.permissions.query({name:'camera'})
+                .then(permissionStatus => {
+                    if (permissionStatus.state === 'granted') {
+                    navigator.mediaDevices.getUserMedia(opciones)
+                        .then(successCallback)
+                        .catch(errorCallback);
+                    } else {
+                    console.error('Permission to access camera denied');
+                    }
                 })
                 .catch(function(err) {
                     alert("No se pudo utilizar la camara :(");
@@ -44,8 +58,19 @@ export const RecognizeCatOrDog = () => {
     }
 
     function cambiarCamara() {
+
+        const successCallback = (stream) => {
+            currentStream.current.srcObject = stream;
+            currentStream.current.play();
+            procesarCamara();
+            predecir();
+          };
+          const errorCallback = (error) => {
+            console.error('Error accessing media devices.', error);
+          };
+
         if (currentStream) {
-            currentStream.getTracks().forEach(track => {
+            currentStream.current.getTracks().forEach(track => {
                 track.stop();
             });
         }
@@ -55,29 +80,33 @@ export const RecognizeCatOrDog = () => {
         var opciones = {
             audio: false,
             video: {
-                facingMode: facingMode, width: size, height: size
+                facingMode, width: size, height: size
             }
         };
 
-
-        navigator.mediaDevices.getUserMedia(opciones)
-            .then(function(stream) {
-                currentStream = stream;
-                video.srcObject = currentStream;
-            })
-            .catch(function(err) {
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.permissions.query({name:'camera'})
+                .then(permissionStatus => {
+                    if (permissionStatus.state === 'granted') {
+                    navigator.mediaDevices.getUserMedia(opciones)
+                        .then(successCallback)
+                        .catch(errorCallback);
+                    } else {
+                    console.error('Permission to access camera denied');
+                    }
+                })
+                .catch(function(err) {
                 console.log("Oops, hubo un error", err);
             })
-    }
+    }}
 
     async function predecir() {
         try {
             const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
-            console.log(modelo)
         if (modelo != null) {
             resample_single(canvas, 150, 150, othercanvas);
             
-            var ctx2 = othercanvas.getContext("2d");
+            var ctx2 = othercanvas.current.getContext("2d");
 
             var imgData = ctx2.getImageData(0,0,150,150);
             var arr = [];
@@ -98,9 +127,8 @@ export const RecognizeCatOrDog = () => {
             var resultados = modelo.predict(tensor4).dataSync();
             var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
-            var clases = ['Gato', 'Perro'];
-            console.log("Prediccion", clases[mayorIndice]);
-            document.getElementById("resultadoRCOD").innerHTML = clases[mayorIndice];
+            var clases = ['Gato 😽', 'Perro 🐶'];
+            resultadoRCOD.current.innerHTML = clases[mayorIndice];
         }
 
         setTimeout(predecir, 150);
@@ -112,9 +140,9 @@ export const RecognizeCatOrDog = () => {
 
     function procesarCamara() {
         
-        var ctx = canvas.getContext("2d");
+        var ctx = canvas.current.getContext("2d");
 
-        ctx.drawImage(video, 0, 0, size, size, 0, 0, size, size);
+        ctx.drawImage(currentStream.current, 0, 0, size, size, 0, 0, size, size);
 
         setTimeout(procesarCamara, 20);
     }
@@ -125,12 +153,11 @@ export const RecognizeCatOrDog = () => {
      * @param {HtmlElement} canvas
      * @param {int} width
      * @param {int} height
-     * @param {boolean} resize_canvas if true, canvas will be resized. Optional.
-     * Cambiado por RT, resize canvas ahora es donde se pone el chiqitillllllo
+     * @param {boolean} resize_canvas
      */
     function resample_single(canvas, width, height, resize_canvas) {
-        var width_source = canvas.width;
-        var height_source = canvas.height;
+        var width_source = canvas.current.width;
+        var height_source = canvas.current.height;
         width = Math.round(width);
         height = Math.round(height);
 
@@ -139,8 +166,8 @@ export const RecognizeCatOrDog = () => {
         var ratio_w_half = Math.ceil(ratio_w / 2);
         var ratio_h_half = Math.ceil(ratio_h / 2);
 
-        var ctx = canvas.getContext("2d");
-        var ctx2 = resize_canvas.getContext("2d");
+        var ctx = canvas.current.getContext("2d");
+        var ctx2 = resize_canvas.current.getContext("2d");
         var img = ctx.getImageData(0, 0, width_source, height_source);
         var img2 = ctx2.createImageData(width, height);
         var data = img.data;
@@ -203,7 +230,7 @@ export const RecognizeCatOrDog = () => {
             <div className="px-4 py-2 my-2 text-center border-bottom">
                 <h1 className="display-5 fw-bold">Gato o Perro</h1>
                 <div className="col-lg-6 mx-auto">
-                <p className="lead mb-0">Clasificaci&oacute;n de "Gato o Perro" usando la c&aacute;mara web utilizando Tensorflow.js</p>
+                    <p className="lead mb-0">Clasificaci&oacute;n de "Gato o Perro" usando la c&aacute;mara web utilizando Tensorflow.js</p>
                 </div>
             </div>
 
@@ -212,11 +239,11 @@ export const RecognizeCatOrDog = () => {
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-12 col-md-4 offset-md-4 text-center">
-                        <video id="video" playsInline autoPlay style={{width: "1px"}}/>
-                        <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=>cambiarCamara()}>Cambiar camara</button>
-                        <canvas id="canvas" width="400" height="400" style={{maxWidth: "100%"}}></canvas>
-                        <canvas id="othercanvas" width="150" height="150" style={{display: "none"}}></canvas>
-                        <div id="resultadoRCOD"></div>
+                        <video id="video" playsInline autoPlay ref={currentStream} style={{width:'1px'}}/>
+                        <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={cambiarCamara}>Cambiar camara</button>
+                        <canvas className='videoCont' id="canvas" ref={canvas} width="400" height="400" style={{maxWidth: "100%"}}></canvas>
+                        <canvas id="othercanvas" ref={othercanvas} width="150" height="150" style={{display: "none"}}></canvas>
+                        <div ref={resultadoRCOD} id="resultadoRCOD"></div>
                     </div>
                 </div>
             </div>
@@ -225,7 +252,9 @@ export const RecognizeCatOrDog = () => {
 
             <div className="b-example-divider mb-0"></div>
 
-            <BackButton/>
+            <div style={{marginTop: '20px'}}>
+                <BackButton/>
+            </div>
         </main>
     )
 }

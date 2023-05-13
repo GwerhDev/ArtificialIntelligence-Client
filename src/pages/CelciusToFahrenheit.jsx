@@ -35,7 +35,7 @@ export const CelciusToFahrenheit = () => {
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="celsius" className="form-label">Grados Celsius: <span id="lbl-celsius">0</span></label>
-                                <input type="range" className="form-range" min="-200" max="200" id="celsius" onInput={()=> {return toFahrenheit(celciusToFahrenheitModel)}} />
+                                <input type="range" defaultValue='0' className="form-range" min="-200" max="200" id="celsius" onInput={()=> {return toFahrenheit(celciusToFahrenheitModel)}} />
                                 <div className="form-text" style={{textShadow:"0px 0px 1px green", color:"white"}}>Desliza para cambiar el valor de grados celsius</div>
                             </div>
                             <div className="mb-3">
