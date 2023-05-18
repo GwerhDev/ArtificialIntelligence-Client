@@ -1,7 +1,7 @@
-import { BackButton } from "../components/BackButton"
 import * as tf from '@tensorflow/tfjs';
 import { URL_API } from "../middlewares/misc/config";
 import { useEffect, useRef } from "react";
+import { BackButton } from "../components/BackButton"
 
 export const RecognizeCatOrDog = () => {
     var canvas = useRef(null);
@@ -9,10 +9,9 @@ export const RecognizeCatOrDog = () => {
     var size = 400;
 
     var currentStream = useRef(null);
-    var facingMode = "user";
+    var facingMode = "environment";
     
     var resultadoRCOD = useRef(null)
-
 
     useEffect(()=>{
         mostrarCamara()
@@ -22,7 +21,7 @@ export const RecognizeCatOrDog = () => {
         var opciones = {
             audio: false,
             video: {
-                facingMode: "user", width: size, height: size
+                facingMode, width: size, height: size
             }
         };
     
@@ -58,7 +57,7 @@ export const RecognizeCatOrDog = () => {
     }
 
     function cambiarCamara() {
-
+        
         const successCallback = (stream) => {
             currentStream.current.srcObject = stream;
             currentStream.current.play();
@@ -103,35 +102,35 @@ export const RecognizeCatOrDog = () => {
     async function predecir() {
         try {
             const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
-        if (modelo != null) {
-            resample_single(canvas, 150, 150, othercanvas);
-            
-            var ctx2 = othercanvas.current.getContext("2d");
+            if (modelo != null) {
+                resample_single(canvas, 150, 150, othercanvas);
+                
+                var ctx2 = othercanvas.current.getContext("2d");
 
-            var imgData = ctx2.getImageData(0,0,150,150);
-            var arr = [];
-            var arr150 = [];
-            for (var p=0; p < imgData.data.length; p+=4) {
-                var red = imgData.data[p]/255;
-                var green = imgData.data[p+1]/255;
-                var blue = imgData.data[p+2]/255;
-                arr150.push([red, green, blue]);
-                if (arr150.length === 150) {
-                    arr.push(arr150);
-                    arr150 = [];
+                var imgData = ctx2.getImageData(0,0,150,150);
+                var arr = [];
+                var arr150 = [];
+                for (var p=0; p < imgData.data.length; p+=4) {
+                    var red = imgData.data[p]/255;
+                    var green = imgData.data[p+1]/255;
+                    var blue = imgData.data[p+2]/255;
+                    arr150.push([red, green, blue]);
+                    if (arr150.length === 150) {
+                        arr.push(arr150);
+                        arr150 = [];
+                    }
                 }
+
+                arr = [arr]; 
+                var tensor4 = tf.tensor4d(arr);
+                var resultados = modelo.predict(tensor4).dataSync();
+                var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
+
+                var clases = ['Gato 😽', 'Perro 🐶'];
+                resultadoRCOD.current.innerHTML = clases[mayorIndice];
+                setTimeout(predecir, 150);
             }
 
-            arr = [arr]; 
-            var tensor4 = tf.tensor4d(arr);
-            var resultados = modelo.predict(tensor4).dataSync();
-            var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
-
-            var clases = ['Gato 😽', 'Perro 🐶'];
-            resultadoRCOD.current.innerHTML = clases[mayorIndice];
-        }
-
-        setTimeout(predecir, 150);
     } catch (error) {
         console.log(error)
     }        
@@ -230,7 +229,7 @@ export const RecognizeCatOrDog = () => {
             <div className="px-4 py-2 my-2 text-center border-bottom">
                 <h1 className="display-5 fw-bold">Gato o Perro</h1>
                 <div className="col-lg-6 mx-auto">
-                    <p className="lead mb-0">Clasificaci&oacute;n de "Gato o Perro" usando la c&aacute;mara web utilizando Tensorflow.js</p>
+                    <p className="lead mb-0">Clasificación de "Gato o Perro" usando la cámara web utilizando Tensorflow.js</p>
                 </div>
             </div>
 
@@ -240,7 +239,7 @@ export const RecognizeCatOrDog = () => {
                 <div className="row">
                     <div className="col-12 col-md-4 offset-md-4 text-center">
                         <video id="video" playsInline autoPlay ref={currentStream} style={{width:'1px'}}/>
-                        <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={cambiarCamara}>Cambiar camara</button>
+                        <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={()=> {return cambiarCamara()}}>Cambiar camara</button>
                         <canvas className='videoCont' id="canvas" ref={canvas} width="400" height="400" style={{maxWidth: "100%"}}></canvas>
                         <canvas id="othercanvas" ref={othercanvas} width="150" height="150" style={{display: "none"}}></canvas>
                         <div ref={resultadoRCOD} id="resultadoRCOD"></div>

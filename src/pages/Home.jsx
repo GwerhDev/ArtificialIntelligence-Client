@@ -17,7 +17,7 @@ export const Home = () => {
             transition={{duration: .5}}
             animate={{opacity:1, x:0}}
         >
-            <ul style={{listStyle:"none", padding:"100px"}}>
+            <ul style={{listStyle:"none", padding:"75px"}}>
                 <li>
                     <Link to="/ai-testing/celsiustofahrenheit">
                     <button className={"buttonPrimary pageList"}>

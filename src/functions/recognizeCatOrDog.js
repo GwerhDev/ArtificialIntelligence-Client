@@ -1,19 +1,19 @@
 import * as tf from '@tensorflow/tfjs';
 import { URL_API } from "../middlewares/misc/config";
 
-export function mostrarCamara(size, currentStream, canvas) {
+export function mostrarCamara(size, currentStream, canvas, othercanvas, resultadoRCOD, facingMode) {
     var opciones = {
         audio: false,
         video: {
-            facingMode: "user", width: size, height: size
+            facingMode, width: size, height: size
         }
     };
 
     const successCallback = (stream) => {
         currentStream.current.srcObject = stream;
         currentStream.current.play();
-        procesarCamara();
-        predecir();
+        procesarCamara(canvas, currentStream, size);
+        predecir(canvas, othercanvas, resultadoRCOD);
       };
       const errorCallback = (error) => {
         console.error('Error accessing media devices.', error);
@@ -40,45 +40,88 @@ export function mostrarCamara(size, currentStream, canvas) {
     }
 }
 
-export async function predecir(canvas, othercanvas, resultadoRCOD) {
-    try {
-        const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
-    if (modelo != null) {
-        resample_single(canvas, 150, 150, othercanvas);
-        
-        var ctx2 = othercanvas.current.getContext("2d");
+export function cambiarCamara(currentStream, facingMode, size, canvas, othercanvas, resultadoRCOD) {
+    
+    const successCallback = (stream) => {
+        currentStream.current.srcObject = stream;
+        currentStream.current.play();
+        procesarCamara(canvas, currentStream, size);
+        predecir(canvas, othercanvas, resultadoRCOD);
+      };
+      const errorCallback = (error) => {
+        console.error('Error accessing media devices.', error);
+      };
 
-        var imgData = ctx2.getImageData(0,0,150,150);
-        var arr = [];
-        var arr150 = [];
-        for (var p=0; p < imgData.data.length; p+=4) {
-            var red = imgData.data[p]/255;
-            var green = imgData.data[p+1]/255;
-            var blue = imgData.data[p+2]/255;
-            arr150.push([red, green, blue]);
-            if (arr150.length === 150) {
-                arr.push(arr150);
-                arr150 = [];
-            }
-        }
-
-        arr = [arr]; 
-        var tensor4 = tf.tensor4d(arr);
-        var resultados = modelo.predict(tensor4).dataSync();
-        var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
-
-        var clases = ['Gato 😽', 'Perro 🐶'];
-        resultadoRCOD.current.innerHTML = clases[mayorIndice];
+    if (currentStream) {
+        currentStream.current.getTracks().forEach(track => {
+            track.stop();
+        });
     }
 
-    setTimeout(predecir, 150);
+    facingMode = facingMode === "user" ? "environment" : "user";
+
+    var opciones = {
+        audio: false,
+        video: {
+            facingMode, width: size, height: size
+        }
+    };
+
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.permissions.query({name:'camera'})
+            .then(permissionStatus => {
+                if (permissionStatus.state === 'granted') {
+                    navigator.mediaDevices
+                        .getUserMedia(opciones)
+                        .then(successCallback)
+                        .catch(errorCallback);
+                } else {
+                    console.error('Permission to access camera denied');
+                }
+            })
+            .catch(function(err) {
+            console.log("Oops, hubo un error", err);
+        })
+}}
+
+async function predecir(canvas, othercanvas, resultadoRCOD) {
+    try {
+        const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
+        if (modelo != null) {
+            resample_single(canvas, 150, 150, othercanvas);
+            
+            var ctx2 = othercanvas.current.getContext("2d");
+
+            var imgData = ctx2.getImageData(0,0,150,150);
+            var arr = [];
+            var arr150 = [];
+            for (var p=0; p < imgData.data.length; p+=4) {
+                var red = imgData.data[p]/255;
+                var green = imgData.data[p+1]/255;
+                var blue = imgData.data[p+2]/255;
+                arr150.push([red, green, blue]);
+                if (arr150.length === 150) {
+                    arr.push(arr150);
+                    arr150 = [];
+                }
+            }
+
+            arr = [arr]; 
+            var tensor4 = tf.tensor4d(arr);
+            var resultados = modelo.predict(tensor4).dataSync();
+            var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
+
+            var clases = ['Gato 😽', 'Perro 🐶'];
+            resultadoRCOD.current.innerHTML = clases[mayorIndice];
+        }
+        setTimeout(predecir, 150);
 } catch (error) {
     console.log(error)
 }        
 
 }
 
-export function procesarCamara(canvas, currentStream, size) {
+function procesarCamara(canvas, currentStream, size) {
     
     var ctx = canvas.current.getContext("2d");
 
@@ -93,8 +136,7 @@ export function procesarCamara(canvas, currentStream, size) {
  * @param {HtmlElement} canvas
  * @param {int} width
  * @param {int} height
- * @param {boolean} resize_canvas if true, canvas wiresize_canvasdrawll be resized. Optional.
- * Cambiado por RT, resize canvas ahora es donde se pone el chiqitillllllo
+ * @param {boolean} resize_canvas
  */
 function resample_single(canvas, width, height, resize_canvas) {
     var width_source = canvas.current.width;
@@ -161,7 +203,6 @@ function resample_single(canvas, width, height, resize_canvas) {
             data2[x2 + 3] = gx_a / weights_alpha;
         }
     }
-
 
     ctx2.putImageData(img2, 0, 0);
 }
