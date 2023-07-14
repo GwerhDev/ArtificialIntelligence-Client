@@ -117,12 +117,12 @@ body{
   background-color: rgb(27, 30, 34);
 }
 
-#resultadoRN{
+#resultRN{
   transition-duration: .5s;
   opacity: 0;
 }
 
-#resultadoRCOD{
+#resultRCOD{
   text-shadow: 0px 0px 4px green;
   font-size: 35px;
   transition-duration: .5s;

@@ -40,7 +40,7 @@ export const CelciusToFahrenheit = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="celsius" className="form-label">Resultado</label>
-                                <div id="resultadoCTF" style={{fontSize:"15px"}}>
+                                <div id="resultCTF" style={{fontSize:"15px"}}>
                                     0 grados celsius son 32 grados fahrenheit
                                 </div>
                             </div>
