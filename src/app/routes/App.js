@@ -16,7 +16,7 @@ function App() {
       <VisitProjects/>
       <Switch>
         <Route exact path='/'>
-          <Redirect to='/ai-testing' />
+          <Redirect to='/ai-testing'/>
         </Route>
         <Route exact path='/ai-testing'>
           <Home/>
