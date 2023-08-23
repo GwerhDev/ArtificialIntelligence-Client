@@ -3,7 +3,7 @@ import { Board } from "../components/Board/Board"
 
 export const RecognizeNumber = () => {
   return (
-    <main>
+    <main className="main-container">
       <motion.div
       initial={{opacity:0}}
       transition={{duration: 1.5}}
