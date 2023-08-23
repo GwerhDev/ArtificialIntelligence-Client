@@ -40,3 +40,20 @@ code {
 input[type="file"] {
   appearance: none;
 }
+
+input[type="file"]::-webkit-file-upload-button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  background-color: rgb(72, 132, 201);
+  box-shadow: 0px 0px 10px rgba(66, 66, 66, 0.788);
+  transition-duration: .4s;
+  margin-right: 10px ;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 89, 134);
+}

@@ -64,6 +64,7 @@ body{
   cursor: pointer;
   background-color: rgb(50, 89, 134);
 }
+
 .button-primary{
   padding: 10px;
   border: none;
@@ -80,6 +81,7 @@ body{
   cursor: pointer;
   background-color: rgb(50, 89, 134);
 }
+
 .buttonOptional{
   padding: 10px;
   border: none;
