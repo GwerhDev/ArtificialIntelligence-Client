@@ -9,19 +9,19 @@ export function imageLoaded(image, threshold) {
   
   ctx.drawImage(image, 0, 0, image.width, image.height);
 
-  blackAndWhite(canvas);
-
+/*   blackAndWhite(canvas);
+ */
   var result = document.getElementById("result-removebackground");
 
   conv(canvas, result, threshold)
 }
 
-function blackAndWhite(canvas) {
+/* function blackAndWhite(canvas) {
   var ctx = canvas.getContext("2d");
   var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   ctx.putImageData(imageData, 0, 0);
-}
+} */
 
 function conv(canvasSrc, canvasResult, threshold) {
   var ctxSrc = canvasSrc.getContext("2d");
@@ -62,12 +62,12 @@ function conv(canvasSrc, canvasResult, threshold) {
       }
 
       var magnitude = Math.sqrt(totalY*totalY + totalX*totalX);
-
+      
       magnitude = (magnitude < threshold) ? 0 : magnitude;
-
-      pixelsResult[idx] = magnitude;
-      pixelsResult[idx+1] = magnitude;
-      pixelsResult[idx+2] = magnitude;
+      
+      pixelsResult[idx] = pixelsSrc[idx]*magnitude;
+      pixelsResult[idx+1] = pixelsSrc[idx+1]*magnitude;
+      pixelsResult[idx+2] = pixelsSrc[idx+2]*magnitude;
       pixelsResult[idx+3] = 255;
     }
   }

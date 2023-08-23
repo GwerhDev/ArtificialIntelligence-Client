@@ -11,28 +11,28 @@ export const Home = () => {
             <ul style={{listStyle:"none", padding:"75px"}}>
                 <li>
                     <Link to="/ai-testing/celsiustofahrenheit">
-                    <button className={"buttonPrimary pageList"}>
+                    <button className={"button-default pageList"}>
                             Convertidor de Celsius a Fahrenheit 🌡️
                         </button>
                     </Link>
                 </li>
                 <li>
                     <Link to="/ai-testing/recognizenumber">
-                        <button className="buttonPrimary pageList">
+                        <button className="button-default pageList">
                             Reconocedor de números 🔢
                         </button>
                     </Link>
                 </li>
                 <li>
                     <Link to="/ai-testing/recognizecatordog">
-                        <button className="buttonPrimary pageList">
+                        <button className="button-default pageList">
                             Reconocedor de Gato o Perro 😽🐶
                         </button>
                     </Link>
                 </li>
                 <li>
                     <Link to="/ai-testing/removebackground">
-                        <button className="buttonPrimary pageList">
+                        <button className="button-default pageList">
                             Quitar fondo imagen 📷
                         </button>
                     </Link>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from './UploadImage.module.css';
 import { imageLoaded } from '../../../functions/removeBackground';
 import { BackButton } from '../Buttons/BackButton';
+import { DownloadButton } from '../Buttons/DownloadButton';
 
 export const UploadImage = () => {
   const [threshold, setThreshold] = useState(0);
@@ -39,7 +40,10 @@ export const UploadImage = () => {
           <div className={s.containerResultImgViewer}>
             <canvas className={s.resultImageViwer} id='result-removebackground'></canvas>
           </div>
-          <BackButton/>
+          <div>
+            <DownloadButton/>
+            <BackButton/>
+          </div>
         </div>
       </div>
     </div>

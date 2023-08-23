@@ -44,7 +44,7 @@ export function Board() {
         <canvas id="smallcanvas" width="28" height="28" style={{display: "none"}}></canvas>
       <div style={{height:"50px", fontSize:"40px", marginBottom:"20px", textShadow:"0px 0px 10px green"}} id="resultRN"></div>
       <div className={s.buttonCont}>
-        <button className={"buttonSecundary"} id="predecir" onClick={()=>handleDrawing(recognizeNumberModel)}>Predecir</button>
+        <button className={"button-primary"} id="predecir" onClick={()=>handleDrawing(recognizeNumberModel)}>Predecir</button>
         <BackButton/>
       </div>
     </div>
