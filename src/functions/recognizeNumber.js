@@ -1,6 +1,6 @@
 import { fabric } from "fabric";
 import * as tf from '@tensorflow/tfjs';
-import { URL_API } from "../middlewares/misc/config";
+import { URL_API } from "../middlewares/config/config";
 
 
 export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { toFahrenheit } from "../functions/toFahrenheit"
+import { toFahrenheit } from "../../functions/toFahrenheit"
 import { useDispatch, useSelector } from 'react-redux';
-import { getModelCelciusToFahrenheit } from "../middlewares/redux/actions";
+import { getModelCelciusToFahrenheit } from "../../middlewares/redux/actions";
 import { motion } from "framer-motion"
-import { BackButton } from "../components/BackButton";
+import { BackButton } from "../components/Buttons/BackButton";
 
 
 export const CelciusToFahrenheit = () => {

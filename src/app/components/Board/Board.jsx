@@ -1,8 +1,8 @@
 import { fabric } from "fabric";
 import { useEffect, useRef, useState } from "react";
-import s from "./css/Board.module.css"
-import { handleClear, handleDrawing } from "../functions/recognizeNumber";
-import { BackButton } from "./BackButton";
+import s from "./Board.module.css"
+import { handleClear, handleDrawing } from "../../../functions/recognizeNumber";
+import { BackButton } from "../Buttons/BackButton";
 
 export function Board() {
   const [canvas, setCanvas] = useState(null);

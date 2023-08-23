@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
-import { URL_API } from "../middlewares/misc/config";
+import { URL_API } from "../../middlewares/config/config";
 import { useEffect, useRef } from "react";
-import { BackButton } from "../components/BackButton"
+import { BackButton } from '../components/Buttons/BackButton';
 
 export const RecognizeCatOrDog = () => {
     var canvas = useRef(null);

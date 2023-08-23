@@ -1,4 +1,4 @@
-import s from "./css/VisitProjects.module.css"
+import s from "./VisitProjects.module.css"
 
 export const VisitProjects = () => {
     return (

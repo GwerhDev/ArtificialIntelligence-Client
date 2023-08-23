@@ -39,6 +39,13 @@ export const Home = () => {
                         </button>
                     </Link>
                 </li>
+                <li>
+                    <Link to="/ai-testing/removebackground">
+                        <button disabled className="buttonPrimary pageList">
+                            Quitar fondo imagen 📷
+                        </button>
+                    </Link>
+                </li>
             </ul>
         </motion.div>
     </div>)
