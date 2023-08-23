@@ -10,3 +10,8 @@
 .buttonCont{
     margin-bottom: 100px;
 }
+
+.canvas{
+    border: 1px solid black;
+    border-top-left-radius: 15px;
+}

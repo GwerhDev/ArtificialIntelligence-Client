@@ -1,7 +1,7 @@
 
 
 export function imageLoaded(image, threshold) {
-  var canvas = document.getElementById("canvas-removebackground");
+  var canvas = document.getElementById("canvas-remove-background");
   var ctx = canvas.getContext("2d");
 
   canvas.width = image.width;
@@ -11,7 +11,7 @@ export function imageLoaded(image, threshold) {
 
   blackAndWhite(canvas);
 
-  var result = document.getElementById("result-removebackground");
+  var result = document.getElementById("result-remove-background");
 
   conv(canvas, result, threshold)
 }

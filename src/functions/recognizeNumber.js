@@ -9,7 +9,7 @@ export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
     newCanvas.isDrawingMode = true;
     newCanvas.freeDrawingBrush.width = brushWidth;
     setCanvas(newCanvas);
-    document.getElementById("resultRN").style.opacity = "0"
+    document.getElementById("result-recognize-number").style.opacity = "0"
 }
 
 function resample_single(canvas, width, height, resize_canvas) {
@@ -121,9 +121,9 @@ export async function handleDrawing(model) {
 
     } catch (error) {
         console.error(error);
-        document.getElementById("resultRN").style.opacity = "1"
-        document.getElementById("resultRN").innerHTML = "Error, vuelve a intentarlo...";
+        document.getElementById("result-recognize-number").style.opacity = "1"
+        document.getElementById("result-recognize-number").innerHTML = "Error, vuelve a intentarlo...";
     }
-    document.getElementById("resultRN").style.opacity = "1"
-    document.getElementById("resultRN").innerHTML = `Es un ${maxIndex}`;
+    document.getElementById("result-recognize-number").style.opacity = "1"
+    document.getElementById("result-recognize-number").innerHTML = `Es un ${maxIndex}`;
 }

@@ -243,7 +243,7 @@ export const RecognizeCatOrDog = () => {
                         <button className="btn btn-primary mb-2" id="cambiar-camara" onClick={() => { return changeCam() }}>Cambiar camara</button>
                         <canvas className='videoCont' id="canvas" ref={canvas} width="400" height="400" style={{ maxWidth: "100%" }}></canvas>
                         <canvas id="othercanvas" ref={othercanvas} width="150" height="150" style={{ display: "none" }}></canvas>
-                        <div ref={resultRCOD} id="resultRCOD"></div>
+                        <div ref={resultRCOD} id="result-recognize-cat-or-dog"></div>
                     </div>
                 </div>
             </div>

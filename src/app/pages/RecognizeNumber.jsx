@@ -1,7 +1,19 @@
 import { motion } from "framer-motion"
 import { Board } from "../components/Board/Board"
+import { BackButton } from "../components/Buttons/BackButton"
+import { handleDrawing } from "../../functions/recognizeNumber"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getModelRecognizeNumber } from "../../middlewares/redux/actions"
 
 export const RecognizeNumber = () => {
+  const recognizeNumberModel = useSelector(state => state.recognizeNumberModel);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getModelRecognizeNumber())
+  }, [dispatch]);
+
   return (
     <main className="main-container">
       <motion.div
@@ -24,10 +36,14 @@ export const RecognizeNumber = () => {
                 <Board/>
             </div>
             <div className="text-center mt-3" style={{display:"flex", justifyContent:"center"}}>
-              <div id="resultRN"></div>
+              <div id="result-recognize-number"></div>
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <button className={"button-primary"} id="predecir" onClick={()=>handleDrawing(recognizeNumberModel)}>Predecir</button>
+        <BackButton/>
       </div>
 
     </motion.div>
