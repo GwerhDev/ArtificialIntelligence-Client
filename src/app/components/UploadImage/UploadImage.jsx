@@ -27,7 +27,7 @@ export const UploadImage = () => {
       <div className={s.containerImg}>
         <div className={s.containerImgInput}>
           <div className={s.containerCanvasImageViewer}>
-            <canvas className={s.canvasImageViwer} id='canvas-remove-background'></canvas>
+            <canvas className={s.canvasImageViwer} id='canvas-removebackground'></canvas>
           </div>
           <input className="form-file mt-4" type="file" onChange={(e) => setImage(e.target.files[0])}/>
           <div className={`mt-5 d-flex justify-content-center align-items-center ${s.inputs}`}>

@@ -119,3 +119,7 @@ code {
 .form-range:focus::-webkit-slider-thumb {
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
+
+ul {
+  list-style: none;
+}
