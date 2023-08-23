@@ -9,19 +9,19 @@ export function imageLoaded(image, threshold) {
   
   ctx.drawImage(image, 0, 0, image.width, image.height);
 
-/*   blackAndWhite(canvas);
- */
+  blackAndWhite(canvas);
+
   var result = document.getElementById("result-removebackground");
 
   conv(canvas, result, threshold)
 }
 
-/* function blackAndWhite(canvas) {
+function blackAndWhite(canvas) {
   var ctx = canvas.getContext("2d");
   var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
   ctx.putImageData(imageData, 0, 0);
-} */
+}
 
 function conv(canvasSrc, canvasResult, threshold) {
   var ctxSrc = canvasSrc.getContext("2d");
