@@ -8,11 +8,11 @@ export const Head = () => {
             transition={{duration: 1.5}}
             animate={{opacity:1}}
         >
-            <div>
+            <header>
                 <Link to="/">
                     <img style={{marginTop:'5rem'}} className="d-block mx-auto mb-2" src="terminalkiller-logo.png" alt="" height="130" />
                 </Link>
-            </div>
+            </header>
         </motion.div>
 
     )
