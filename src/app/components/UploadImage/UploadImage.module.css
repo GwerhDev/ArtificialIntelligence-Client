@@ -31,6 +31,10 @@
   background-color: #171717;
   border-radius: 15px;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .containerResult {
