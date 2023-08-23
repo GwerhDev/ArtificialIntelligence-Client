@@ -4,19 +4,10 @@ import { motion } from "framer-motion"
 export const Home = () => {
   return (
     <div>
-        <motion.div
-            initial={{opacity:0}}
-            transition={{duration: 2.5}}
-            animate={{opacity:1}}
-        >
+        <motion.div initial={{opacity:0}} transition={{duration: 2.5}} animate={{opacity:1}}>
             <h1 className="display-5 fw-bold">Testing AI & Components</h1>
         </motion.div>
-        <div className="b-example-divider"/>
-        <motion.div
-            initial={{opacity:0, x:-15}}
-            transition={{duration: .5}}
-            animate={{opacity:1, x:0}}
-        >
+        <motion.div initial={{opacity:0, x:-15}} transition={{duration: .5}} animate={{opacity:1, x:0}}>
             <ul style={{listStyle:"none", padding:"75px"}}>
                 <li>
                     <Link to="/ai-testing/celsiustofahrenheit">
@@ -41,7 +32,7 @@ export const Home = () => {
                 </li>
                 <li>
                     <Link to="/ai-testing/removebackground">
-                        <button disabled className="buttonPrimary pageList">
+                        <button className="buttonPrimary pageList">
                             Quitar fondo imagen 📷
                         </button>
                     </Link>

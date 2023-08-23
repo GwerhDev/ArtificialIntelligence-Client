@@ -16,8 +16,6 @@ export const RecognizeNumber = () => {
         </div>
       </div>
 
-      <div className="b-example-divider"></div>
-
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 col-md-4 offset-md-4">
@@ -32,9 +30,6 @@ export const RecognizeNumber = () => {
         </div>
       </div>
 
-      <div className="b-example-divider"></div>
-
-      <div className="b-example-divider mb-0"></div>
     </motion.div>
     </main>
   )

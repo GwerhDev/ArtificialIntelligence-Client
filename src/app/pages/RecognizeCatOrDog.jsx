@@ -1,5 +1,6 @@
 import * as tf from '@tensorflow/tfjs';
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion"
 import { BackButton } from '../components/Buttons/BackButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { getModelRecognizeCatOrDog } from '../../middlewares/redux/actions';
@@ -227,14 +228,13 @@ export const RecognizeCatOrDog = () => {
 
     return (
         <main>
+            <motion.div initial={{opacity:0}} transition={{duration: 1.5}} animate={{opacity:1}}>
             <div className="px-4 py-2 my-2 text-center border-bottom">
                 <h1 className="display-5 fw-bold">Gato o Perro</h1>
                 <div className="col-lg-6 mx-auto">
                     <p className="lead mb-0">Clasificación de "Gato o Perro" usando la cámara web utilizando Tensorflow.js</p>
                 </div>
             </div>
-
-            <div className="b-example-divider"></div>
 
             <div className="container mt-5">
                 <div className="row">
@@ -247,14 +247,11 @@ export const RecognizeCatOrDog = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="b-example-divider"></div>
-
-            <div className="b-example-divider mb-0"></div>
-
+            
             <div style={{ marginTop: '20px' }}>
                 <BackButton />
             </div>
+            </motion.div>
         </main>
     )
 }
