@@ -1,9 +1,12 @@
 import * as tf from '@tensorflow/tfjs';
-import { URL_API } from "../../middlewares/config/config";
 import { useEffect, useRef } from "react";
 import { BackButton } from '../components/Buttons/BackButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { getModelRecognizeCatOrDog } from '../../middlewares/redux/actions';
 
 export const RecognizeCatOrDog = () => {
+    const dispatch = useDispatch();
+    const recognizeCatOrDogModel = useSelector(state => state.recognizeCatOrDogModel);
     var canvas = useRef(null);
     var othercanvas = useRef(null);
     var size = 400;
@@ -11,11 +14,15 @@ export const RecognizeCatOrDog = () => {
     var currentStream = useRef(null);
     var facingMode = "environment";
 
-    var resultRCOD = useRef(null)
+    var resultRCOD = useRef(null);
 
     useEffect(() => {
         showCam()
     })
+
+    useEffect(() => {
+        dispatch(getModelRecognizeCatOrDog())
+    },[dispatch])
 
     function showCam() {
         var options = {
@@ -29,7 +36,7 @@ export const RecognizeCatOrDog = () => {
             currentStream.current.srcObject = stream;
             currentStream.current.play();
             processCam();
-            predict();
+            predict(recognizeCatOrDogModel);
         };
         const errorCallback = (error) => {
             console.error('Error accessing media devices.', error);
@@ -61,7 +68,7 @@ export const RecognizeCatOrDog = () => {
             currentStream.current.srcObject = stream;
             currentStream.current.play();
             processCam();
-            predict();
+            predict(recognizeCatOrDogModel);
         };
         const errorCallback = (error) => {
             console.error('Error accessing media devices.', error);
@@ -94,15 +101,14 @@ export const RecognizeCatOrDog = () => {
                     }
                 })
                 .catch(function (err) {
-                    console.log("Oops, hubo un error", err);
+                    console.error("Oops, hubo un error", err);
                 })
         }
     }
 
-    async function predict() {
+    async function predict(model) {
         try {
-            const modelo = await tf.loadLayersModel(`${URL_API}/recognizecatordog/model`);
-            if (modelo != null) {
+            if (model != null) {
                 resample_single(canvas, 150, 150, othercanvas);
 
                 var ctx2 = othercanvas.current.getContext("2d");
@@ -123,7 +129,7 @@ export const RecognizeCatOrDog = () => {
 
                 arr = [arr];
                 var tensor4 = tf.tensor4d(arr);
-                var results = modelo.predict(tensor4).dataSync();
+                var results = model.predict(tensor4).dataSync();
                 var maxIndex = results.indexOf(Math.max.apply(null, results));
 
                 var classes = ['Gato 😽', 'Perro 🐶'];
@@ -131,7 +137,7 @@ export const RecognizeCatOrDog = () => {
                 setTimeout(predict, 150);
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 

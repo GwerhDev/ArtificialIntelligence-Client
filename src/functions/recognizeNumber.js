@@ -1,7 +1,5 @@
 import { fabric } from "fabric";
 import * as tf from '@tensorflow/tfjs';
-import { URL_API } from "../middlewares/config/config";
-
 
 export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
     canvas.dispose();
@@ -96,13 +94,11 @@ function resample_single(canvas, width, height, resize_canvas) {
     ctx2.putImageData(img2, 0, 0);
 }
 
-export async function handleDrawing() {
+export async function handleDrawing(model) {
     try {
         var bigcanvas = document.getElementById("bigcanvas");
         var smallcanvas = document.getElementById("smallcanvas");
         var ctx2 = smallcanvas.getContext("2d");
-
-        const modelo = await tf.loadLayersModel(`${URL_API}/recognizenumber/model`);
 
         resample_single(bigcanvas, 28, 28, smallcanvas);
 
@@ -120,7 +116,7 @@ export async function handleDrawing() {
 
         arr = [arr];
         var tensor4 = tf.tensor4d(arr);
-        var results = modelo.predict(tensor4).dataSync();
+        var results = model.predict(tensor4).dataSync();
         var maxIndex = results.indexOf(Math.max.apply(null, results));
 
     } catch (error) {
