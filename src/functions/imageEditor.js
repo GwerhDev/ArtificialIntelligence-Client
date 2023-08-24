@@ -25,23 +25,12 @@ function blackAndWhite(canvas) {
     pixels[i+2] = avg;
   }
 
-  ctx.putImageData(imageData, 0, 0);
+  return imageData;
 }
 
-function convolution(canvasSrc, canvasResult, editionOptions) {
-  const { 
-    blackAndWhiteState,
-    threshold
-  } = editionOptions;
-  var ctxSrc = canvasSrc.getContext("2d");
-  var imgDataSrc = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
-  var pixelsSrc = imgDataSrc.data;
+function sobelAxis(canvasSrc, imageDataResult, threshold) {
+  var pixelsSrc = imageDataResult.data;
 
-  canvasResult.width = canvasSrc.width;
-  canvasResult.height = canvasSrc.height;
-
-  var ctxResult = canvasResult.getContext("2d");
-  var imageDataResult = ctxResult.createImageData(canvasResult.width, canvasResult.height);
   var pixelsResult = imageDataResult.data;
 
   var sobelY = [
@@ -80,10 +69,35 @@ function convolution(canvasSrc, canvasResult, editionOptions) {
       pixelsResult[idx+3] = 255*magnitude;
     }
   }
+  return imageDataResult
+
+}
+
+function convolution(canvasSrc, canvasResult, editionOptions) {
+  const { 
+    blackAndWhiteState,
+    sobelAxisThreshold
+  } = editionOptions;
+
+  var ctxSrc = canvasSrc.getContext("2d");
+  var imgDataSrc = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+
+  canvasResult.width = canvasSrc.width;
+  canvasResult.height = canvasSrc.height;
+
+  var ctxResult = canvasResult.getContext("2d");
+  var imageDataResult = ctxResult.createImageData(canvasResult.width, canvasResult.height);
+
+  imageDataResult = imgDataSrc;
+
+  if(blackAndWhiteState) {
+    imageDataResult = blackAndWhite(canvasSrc)
+  }
+  
+  if(sobelAxisThreshold > 0) {
+    imageDataResult = sobelAxis(canvasSrc, imageDataResult, sobelAxisThreshold)
+  }
   
   ctxResult.putImageData(imageDataResult, 0, 0);
 
-  if(blackAndWhiteState) {
-    blackAndWhite(canvasResult)
-  }
 }

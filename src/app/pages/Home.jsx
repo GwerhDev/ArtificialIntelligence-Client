@@ -31,7 +31,7 @@ export const Home = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/ai-testing/removebackground">
+                        <Link to="/ai-testing/image-editor">
                             <button className="button-default pageList">
                                 Editor de imagenes 📷
                             </button>

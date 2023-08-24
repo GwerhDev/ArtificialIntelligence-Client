@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import s from './UploadImage.module.css';
-import { imageLoaded } from '../../../functions/removeBackground';
+import { imageLoaded } from '../../../functions/imageEditor';
 import { BackButton } from '../Buttons/BackButton';
 import { DownloadButton } from '../Buttons/DownloadButton';
 
 export const UploadImage = () => {
-  const [threshold, setThreshold] = useState(0);
+  const [sobelAxisThreshold, setSobelAxisThreshold] = useState(0);
   const [blackAndWhiteState, setBlackAndWhiteState] = useState(false);
   const [image, setImage] = useState(null);
 
   useEffect(() => {
     const editOptions = {
-      threshold: threshold,
+      sobelAxisThreshold: sobelAxisThreshold,
       blackAndWhiteState: blackAndWhiteState
     }
     if (image) {
@@ -21,11 +21,11 @@ export const UploadImage = () => {
         const img = new Image();
         img.src = reader.result;
         img.onload = () => {
-          imageLoaded(img, threshold, editOptions);
+          imageLoaded(img, sobelAxisThreshold, editOptions);
         };
       };
     }
-  }, [image, threshold, blackAndWhiteState]);
+  }, [image, sobelAxisThreshold, blackAndWhiteState]);
 
   return (
     <div className={s.container}>
@@ -37,8 +37,8 @@ export const UploadImage = () => {
           <input className="form-file mt-4" type="file" onChange={(e) => setImage(e.target.files[0])}/>
         </div>
         <div className={s.containerResult}>
-          <div className={s.containerResultImgViewer}>
-            <canvas className={s.resultImageViwer} id='result-remove-background'></canvas>
+          <div className={`${s.containerResultImgViewer}`}>
+            <canvas className={`${s.resultImageViwer}`} id='result-remove-background'></canvas>
             <div className={`mt-5 d-flex align-items-center ${s.inputCheck} ${s.inputs}`}>
               <label htmlFor="b-n" className="form-label">B/N:</label>
               <input type="checkbox" defaultValue={false} className="form-checkbox" id="b-n" onChange={(e) => setBlackAndWhiteState(!blackAndWhiteState)} />
@@ -46,12 +46,12 @@ export const UploadImage = () => {
             </div>
 
             <div className={`d-flex align-items-center ${s.titleFx}`}>
-              <label htmlFor="threshold" className="form-label">Ejes: </label>
+              <label htmlFor="threshold" className="form-label">Ejes (Algoritmo de Sobel): </label>
             </div>
             <div className={`d-flex justify-content-center align-items-center ${s.inputs}`}>
               <label htmlFor="threshold" className="form-label">Umbral: </label>
-              <input type="range" defaultValue='0' className="form-range" min="0" max="255" id="threshold" onInput={(e) => setThreshold(e.target.value)} />
-              <div className="form-text" style={{ textShadow: "0px 0px 1px green", color: "white" }}><span id="lbl-threshold">{threshold}</span></div>
+              <input type="range" defaultValue='0' className="form-range" min="0" max="255" id="threshold" onInput={(e) => setSobelAxisThreshold(e.target.value)} />
+              <div className="form-text" style={{ textShadow: "0px 0px 1px green", color: "white" }}><span id="lbl-threshold">{sobelAxisThreshold}</span></div>
             </div>
           </div>
           <div>

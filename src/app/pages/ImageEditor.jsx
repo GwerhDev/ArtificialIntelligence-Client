@@ -2,7 +2,7 @@ import React from 'react';
 import { UploadImage } from '../components/UploadImage/UploadImage';
 import { motion } from "framer-motion";
 
-export const RemoveBackground = () => {
+export const ImageEditor = () => {
   return (
     <main className="main-container">
       <motion.div initial={{opacity:0}} transition={{duration: 1.5}} animate={{opacity:1}}>

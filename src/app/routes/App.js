@@ -6,7 +6,7 @@ import { Home } from '../pages/Home';
 import { CelciusToFahrenheit } from '../pages/CelciusToFahrenheit';
 import { RecognizeNumber } from '../pages/RecognizeNumber';
 import { RecognizeCatOrDog } from '../pages/RecognizeCatOrDog';
-import { RemoveBackground } from '../pages/RemoveBackground';
+import { ImageEditor } from '../pages/ImageEditor';
 
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
         <Route exact path='/ai-testing/recognizecatordog'>
           <RecognizeCatOrDog/>
         </Route>
-        <Route exact path='/ai-testing/removebackground'>
-          <RemoveBackground/>
+        <Route exact path='/ai-testing/image-editor'>
+          <ImageEditor/>
         </Route>
       </Switch>
     </div>
