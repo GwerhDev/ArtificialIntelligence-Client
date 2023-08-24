@@ -1,1 +1,1 @@
-export const $d = () => { }
+export const $d = (e) => document.getElementById(e);

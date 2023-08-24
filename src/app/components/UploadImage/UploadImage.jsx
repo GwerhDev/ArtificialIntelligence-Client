@@ -27,18 +27,18 @@ export const UploadImage = () => {
       <div className={s.containerImg}>
         <div className={s.containerImgInput}>
           <div className={s.containerCanvasImageViewer}>
-            <canvas className={s.canvasImageViwer} id='canvas-removebackground'></canvas>
+            <canvas className={s.canvasImageViwer} id='canvas-remove-background'></canvas>
           </div>
           <input className="form-file mt-4" type="file" onChange={(e) => setImage(e.target.files[0])}/>
-          <div className={`mt-5 d-flex justify-content-center align-items-center ${s.inputs}`}>
-            <label htmlFor="threshold" className="form-label">Umbral: </label>
-            <input type="range" defaultValue='0' className="form-range" min="0" max="200" id="threshold" onInput={(e) => setThreshold(e.target.value)} />
-            <div className="form-text" style={{ textShadow: "0px 0px 1px green", color: "white" }}><span id="lbl-threshold">{threshold}</span></div>
-          </div>
         </div>
         <div className={s.containerResult}>
           <div className={s.containerResultImgViewer}>
             <canvas className={s.resultImageViwer} id='result-remove-background'></canvas>
+            <div className={`mt-5 d-flex justify-content-center align-items-center ${s.inputs}`}>
+              <label htmlFor="threshold" className="form-label">Umbral: </label>
+              <input type="range" defaultValue='0' className="form-range" min="0" max="255" id="threshold" onInput={(e) => setThreshold(e.target.value)} />
+              <div className="form-text" style={{ textShadow: "0px 0px 1px green", color: "white" }}><span id="lbl-threshold">{threshold}</span></div>
+            </div>
           </div>
           <div>
             <DownloadButton/>

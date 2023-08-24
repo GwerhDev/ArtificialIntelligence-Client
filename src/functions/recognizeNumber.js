@@ -1,5 +1,6 @@
 import { fabric } from "fabric";
 import * as tf from '@tensorflow/tfjs';
+import { $d } from "./DocumentCSS";
 
 export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
     canvas.dispose();
@@ -9,7 +10,7 @@ export function handleClear(canvas, setCanvas, canvasRef, brushWidth) {
     newCanvas.isDrawingMode = true;
     newCanvas.freeDrawingBrush.width = brushWidth;
     setCanvas(newCanvas);
-    document.getElementById("result-recognize-number").style.opacity = "0"
+    $d("result-recognize-number").style.opacity = "0"
 }
 
 function resample_single(canvas, width, height, resize_canvas) {
@@ -96,8 +97,8 @@ function resample_single(canvas, width, height, resize_canvas) {
 
 export async function handleDrawing(model) {
     try {
-        var bigcanvas = document.getElementById("bigcanvas");
-        var smallcanvas = document.getElementById("smallcanvas");
+        var bigcanvas = $d("bigcanvas");
+        var smallcanvas = $d("smallcanvas");
         var ctx2 = smallcanvas.getContext("2d");
 
         resample_single(bigcanvas, 28, 28, smallcanvas);
@@ -121,9 +122,9 @@ export async function handleDrawing(model) {
 
     } catch (error) {
         console.error(error);
-        document.getElementById("result-recognize-number").style.opacity = "1"
-        document.getElementById("result-recognize-number").innerHTML = "Error, vuelve a intentarlo...";
+        $d("result-recognize-number").style.opacity = "1"
+        $d("result-recognize-number").innerHTML = "Error, vuelve a intentarlo...";
     }
-    document.getElementById("result-recognize-number").style.opacity = "1"
-    document.getElementById("result-recognize-number").innerHTML = `Es un ${maxIndex}`;
+    $d("result-recognize-number").style.opacity = "1"
+    $d("result-recognize-number").innerHTML = `Es un ${maxIndex}`;
 }
