@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.8c049003.css",
-    "main.js": "/static/js/main.c016804c.js",
+    "main.css": "/static/css/main.24dc0f07.css",
+    "main.js": "/static/js/main.dde3d767.js",
     "static/media/terminalkiller-logo.png": "/static/media/terminalkiller-logo.7dbe3068db719e28e85a.png",
     "static/media/cam-icon.png": "/static/media/cam-icon.058dcd1631cf934f5aba.png",
     "index.html": "/index.html",
-    "main.8c049003.css.map": "/static/css/main.8c049003.css.map",
-    "main.c016804c.js.map": "/static/js/main.c016804c.js.map"
+    "main.24dc0f07.css.map": "/static/css/main.24dc0f07.css.map",
+    "main.dde3d767.js.map": "/static/js/main.dde3d767.js.map"
   },
   "entrypoints": [
-    "static/css/main.8c049003.css",
-    "static/js/main.c016804c.js"
+    "static/css/main.24dc0f07.css",
+    "static/js/main.dde3d767.js"
   ]
 }
