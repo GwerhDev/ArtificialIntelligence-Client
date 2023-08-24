@@ -1,6 +1,6 @@
 import { $d } from "./DocumentCSS";
 
-export function imageLoaded(image, threshold) {
+export function imageLoaded(image, threshold, editionOptions) {
   var canvas = $d("canvas-remove-background");
   var ctx = canvas.getContext("2d");
 
@@ -9,21 +9,30 @@ export function imageLoaded(image, threshold) {
   
   ctx.drawImage(image, 0, 0, image.width, image.height);
 
-/*   blackAndWhite(canvas);
- */
   var result = $d("result-remove-background");
 
-  convolution(canvas, result, threshold)
+  convolution(canvas, result, editionOptions)
 }
 
-/* function blackAndWhite(canvas) {
+function blackAndWhite(canvas) {
   var ctx = canvas.getContext("2d");
   var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  var pixels = imageData.data;
+  for(let i = 0; i < pixels.length; i += 4) {
+    var avg = (pixels[i] + pixels[i+1] + pixels[i+2]) / 3;
+    pixels[i] = avg;
+    pixels[i+1] = avg;
+    pixels[i+2] = avg;
+  }
 
   ctx.putImageData(imageData, 0, 0);
-} */
+}
 
-function convolution(canvasSrc, canvasResult, threshold) {
+function convolution(canvasSrc, canvasResult, editionOptions) {
+  const { 
+    blackAndWhiteState,
+    threshold
+  } = editionOptions;
   var ctxSrc = canvasSrc.getContext("2d");
   var imgDataSrc = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
   var pixelsSrc = imgDataSrc.data;
@@ -73,4 +82,8 @@ function convolution(canvasSrc, canvasResult, threshold) {
   }
   
   ctxResult.putImageData(imageDataResult, 0, 0);
+
+  if(blackAndWhiteState) {
+    blackAndWhite(canvasResult)
+  }
 }

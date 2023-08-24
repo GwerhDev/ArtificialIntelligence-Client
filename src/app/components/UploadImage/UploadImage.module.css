@@ -69,11 +69,19 @@
 .inputs {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 0;
   margin: 0;
 }
+
+.inputCheck {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 
 .inputs label {
   width: 100px;
@@ -93,6 +101,22 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.titleFx {
+  width: 100%;
+}
+
+.inputCheck label,
+.inputCheck div {
+  height: 50px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  margin-top: -20px;
 }
 
 .inputs input {

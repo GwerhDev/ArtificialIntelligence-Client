@@ -7,4 +7,5 @@
     background-color: rgba(0, 0, 0, 0.582);
     color: white;
     padding: 14px;
+    z-index: 9;
 }
