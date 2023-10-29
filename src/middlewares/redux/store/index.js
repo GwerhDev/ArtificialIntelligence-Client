@@ -23,4 +23,4 @@ if(process.env.NODE_ENV === DEVELOPMENT){
     )
 }
 
-export default store
+export default store;
