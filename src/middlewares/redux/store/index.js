@@ -8,19 +8,19 @@ import { DEVELOPMENT } from '../../misc/consts';
 var store = {};
 const composeEnhancer = window.REDUX_DEVTOOLS_EXTENSIONS_COMPOSE || compose;
 
-if(process.env.NODE_ENV === DEVELOPMENT){
-    store = createStore(
-        rootReducer,
-        compose(
-            applyMiddleware(thunk),
-            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-        )
+if (process.env.NODE_ENV === DEVELOPMENT) {
+  store = createStore(
+    rootReducer,
+    compose(
+      applyMiddleware(thunk),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
+  )
 } else {
-    store = createStore(
-        rootReducer,
-        composeEnhancer(applyMiddleware(thunkMiddleware))
-    )
+  store = createStore(
+    rootReducer,
+    composeEnhancer(applyMiddleware(thunkMiddleware))
+  )
 }
 
 export default store;

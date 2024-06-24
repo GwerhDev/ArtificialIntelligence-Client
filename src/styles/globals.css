@@ -136,7 +136,7 @@ body{
   background-color: rgba(43, 42, 42, 0.664);
   margin-bottom: 20px;
   border-radius: 10px;
-  background-image: url(./assets/image/png/cam-icon.png);
+  background-image: url(../assets/image/png/cam-icon.png);
   background-position: center;
   background-size: 180px;
   background-repeat: no-repeat;

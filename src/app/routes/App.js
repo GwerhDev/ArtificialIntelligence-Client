@@ -1,5 +1,4 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import '../../App.css';
 import { VisitProjects } from '../components/VisitProjects/VisitProjects';
 import { Head } from '../components/Head/Head';
 import { Home } from '../pages/Home';
